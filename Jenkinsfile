@@ -57,7 +57,9 @@ pipeline {
         
         stage ('Nexus repository download') {
             steps {
-            bat "curl -L -o my-app-1.0.jar  -s -X GET "http://localhost:8081/service/rest/v1/search/assets/download?sort=version&repository=demo&maven.groupId=com.mycompany.app&maven.artifactId=my-app&maven.baseVersion=1.0-SNAPSHOT&maven.extension=jar" -H "accept: application/json""
+            bat '''
+            curl -L -o my-app-1.0.jar  -s -X GET "http://localhost:8081/service/rest/v1/search/assets/download?sort=version&repository=demo&maven.groupId=com.mycompany.app&maven.artifactId=my-app&maven.baseVersion=1.0-SNAPSHOT&maven.extension=jar" -H "accept: application/json"
+            '''
                 
             }
         }

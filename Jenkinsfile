@@ -27,7 +27,7 @@ pipeline {
     PROJECT_NAME = "Suresh051_hello-world-war"
   }
   steps {
-    withSonarQubeEnv('SonarCloudOne') {
+    withSonarQubeEnv('SonarCloud') {
         bat '''
         echo $SCANNER_HOME
         $SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \

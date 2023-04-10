@@ -10,9 +10,7 @@ pipeline {
         NEXUS_REPOSITORY = "demo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
     }
-    
-    parameters {
-        booleanParam(name: 'skip_stage', defaultValue: true, description: 'Set to true to skip the stage')
+   parameters { booleanParam(name: 'skip_stage', defaultValue: true, description: 'Set to true to skip the stage') }
     stages {
         stage("Maven Build") {
             when { expression { params.skip_stage != true } }

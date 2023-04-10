@@ -10,8 +10,12 @@ pipeline {
         NEXUS_REPOSITORY = "demo"
         NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
     }
+    
+    parameters {
+        booleanParam(name: 'skip_stage', defaultValue: true, description: 'Set to true to skip the stage')
     stages {
         stage("Maven Build") {
+            when { expression { params.skip_stage != true } }
             steps {
                 script {
                     bat "mvn package -DskipTests=true"
@@ -19,6 +23,7 @@ pipeline {
             }
         }
         stage("Publish to Nexus Repository Manager") {
+             when { expression { params.skip_stage != true } }
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";
@@ -62,6 +67,7 @@ pipeline {
         }
         
         stage ('Nexus repository download') {
+             when { expression { params.skip_stage != true } }
             steps {
             bat '''
             curl -L -o hello-world-war-1.0.0.war -s -X GET "http://localhost:8081/service/rest/v1/search/assets/download?sort=version&repository=demo&maven.groupId=com.efsavage&maven.artifactId=hello-world-war&maven.baseVersion=1.0-SNAPSHOT&maven.extension=war" -H "accept: application/json"
@@ -72,8 +78,7 @@ pipeline {
         stage ('deploy to tomcat') {
             steps {            
                bat "cd C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
-               bat "del hello-world-war-1.0.0.war"
-    }          
+               bat "del hello-world-war-1.0.0.war"         
         }
     }
     }

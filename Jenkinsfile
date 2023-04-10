@@ -78,13 +78,13 @@ pipeline {
                bat '''
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
                del "hello-world-war-1.0.0.war"  
-               del  hello-world-war-1.0.0
+               echo y | rmdir hello-world-war-1.0.0
                
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin"
                Tomcat9.exe stop
                echo %WORKSPACE%
                cd "%WORKSPACE%
-               xcopy hello-world-war-1.0.0.war" "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webappss/"
+               xcopy hello-world-war-1.0.0.war "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webappss/"
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin"
                Tomcat9.exe start
                '''

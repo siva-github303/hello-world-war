@@ -29,9 +29,9 @@ pipeline {
   steps {
     withSonarQubeEnv('SonarCloud') {
         bat '''
-         ${env.SCANNER_HOME}/bin/sonar-scanner -Dsonar.organization=${env.ORGANIZATION} \
-        -Dsonar.projectKey=${env.PROJECT_NAME} \
-        -Dsonar.sources=.
+         "C:\sonar-scanner\bin\sonar-scanner -Dsonar.organization=Suresh051 \
+        -Dsonar.projectKey=Suresh051_hello-world-war \
+        -Dsonar.sources=."
         '''
     }
   }

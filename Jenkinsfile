@@ -33,19 +33,19 @@ pipeline {
         sonar-scanner -Dsonar.organization=suresh051 -Dsonar.projectKey=Suresh051_hello-world-war
         '''
     }
+        sleep time: 30000, unit: 'MILLISECONDS'
+                echo "test1"
+                script {
+                        echo "test2"
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            echo "test3" }
+                    }
   }
 }
-        stage("Quality Gate"){
-             steps {
-          timeout(time: 1, unit: 'HOURS') {
-             
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-              }
-              }
-          }
-      }
+     
+    
 
         stage("Publish to Nexus Repository Manager") {
              when { expression { params.skip_stage != true } }

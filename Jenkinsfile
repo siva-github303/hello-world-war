@@ -53,6 +53,12 @@ pipeline {
                     }
                 }
             }
+            
+        post { 
+        always { 
+            cleanWs()
+        }
+    }
         }
         
         stage ('Nexus repository download') {

@@ -78,6 +78,7 @@ pipeline {
                bat '''
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
                del "hello-world-war-1.0.0.war"  
+               del  hello-world-war-1.0.0
                
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin"
                Tomcat9.exe stop

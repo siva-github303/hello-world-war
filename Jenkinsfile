@@ -75,8 +75,10 @@ pipeline {
         }
         stage ('deploy to tomcat') {
             steps {            
-               bat "cd C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
-               bat "del hello-world-war-1.0.0.war"         
+               bat '''
+               cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"
+               del hello-world-war-1.0.0.war
+               '''
         }
     }
     }

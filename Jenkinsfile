@@ -30,8 +30,15 @@ pipeline {
     withSonarQubeEnv('SonarCloud') {
         bat '''
         cd "C:/sonar-scanner/bin"
-        sonar-scanner -Dsonar.organization=Suresh051 -Dsonar.projectKey=Suresh051_hello-world-war
+        sonar-scanner -Dsonar.organization=suresh051 -Dsonar.projectKey=Suresh051_hello-world-war
         '''
+    }
+  }
+}
+ stage("Quality Gate") {
+  steps {
+    timeout(time: 1, unit: 'MINUTES') {
+        waitForQualityGate abortPipeline: true
     }
   }
 }

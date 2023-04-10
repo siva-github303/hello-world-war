@@ -73,7 +73,7 @@ pipeline {
             steps {            
                 
                 bat'''
-                del "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/hello-world-war-1.0.0.war
+                del "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/hello-world-war-1.0.0.war"
                 Tomcat9.exe stop
                 ehco %WORKSPACE%
                 xcopy %WORKSPACE%/hello-world-war-1.0.0.war "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webappss/"

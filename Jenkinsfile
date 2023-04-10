@@ -65,6 +65,7 @@ pipeline {
         }
         
         stage ('Nexus repository download') {
+            when { expression { params.skip_stage != true } }
             steps {
             bat '''
             curl -L -o hello-world-war-1.0.0.war -s -X GET "http://localhost:8081/service/rest/v1/search/assets/download?sort=version&repository=demo&maven.groupId=com.efsavage&maven.artifactId=hello-world-war&maven.baseVersion=1.0-SNAPSHOT&maven.extension=war" -H "accept: application/json"
@@ -83,7 +84,7 @@ pipeline {
                Tomcat9.exe stop
                echo %WORKSPACE%
                cd "%WORKSPACE%
-               xcopy hello-world-war-1.0.0.war "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webappss/"
+               xcopy hello-world-war-1.0.0.war "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webappss/hello-world-war-1.0.0.war"
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin"
                Tomcat9.exe start
                '''

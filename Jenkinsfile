@@ -23,7 +23,7 @@ pipeline {
     stage('SonarCloud') {
   environment {
     SCANNER_HOME = tool 'SonarQubeScanner'
-    ORGANIZATION = "Suresh051"
+    ORGANIZATION = "suresh051"
     PROJECT_NAME = "Suresh051_hello-world-war"
   }
   steps {

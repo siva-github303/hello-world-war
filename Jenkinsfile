@@ -88,6 +88,7 @@ pipeline {
             }
         }
         stage ('deploy to tomcat') {
+            when { expression { params.skip_stage != true } }
             steps {            
                bat '''
                cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/"

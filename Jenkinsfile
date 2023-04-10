@@ -20,6 +20,20 @@ pipeline {
                 }
             }
         }
+    stage('SonarCloud') {
+  environment {
+    SCANNER_HOME = tool 'SonarQubeScanner'
+    ORGANIZATION = "Suresh051"
+    PROJECT_NAME = "Suresh051_hello-world-war"
+  }
+  steps {
+    withSonarQubeEnv('SonarCloudOne') {
+        sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+        -Dsonar.projectKey=$PROJECT_NAME \
+        -Dsonar.sources=.'''
+    }
+  }
+}
         stage("Publish to Nexus Repository Manager") {
              when { expression { params.skip_stage != true } }
             steps {

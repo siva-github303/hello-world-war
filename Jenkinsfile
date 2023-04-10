@@ -29,6 +29,7 @@ pipeline {
   steps {
     withSonarQubeEnv('SonarCloudOne') {
         bat '''
+        echo $SCANNER_HOME
         $SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
         -Dsonar.projectKey=$PROJECT_NAME \
         -Dsonar.sources=.

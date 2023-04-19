@@ -1,23 +1,19 @@
 pipeline {
     agent any
-    tools {
-        maven "LocalMaven"
+    environment { 
+        CC = 'clang'
+        java = 'test'
     }
-    environment {
-        NEXUS_VERSION = "nexus3"
-        NEXUS_PROTOCOL = "http"
-        NEXUS_URL = "localhost:8081"
-        NEXUS_REPOSITORY = "demo"
-        NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
-    }
-   parameters { booleanParam(name: 'skip_stage', defaultValue: true, description: 'Set to true to skip the stage') }
     stages {
-        stage("Maven Build") {
-            when { expression { params.skip_stage != true } }
-            steps {
-                script {
-                    bat "mvn package -DskipTests=true"
-                }
+        stage('Example') {
+            environment { 
+                DEBUG_FLAGS = '-g'
             }
-        
-        
+            steps {
+                echo env.cc
+                echo env.java
+                echo env.debug_flags
+            }
+        }
+    }
+}

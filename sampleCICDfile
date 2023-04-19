@@ -1,19 +1,18 @@
 pipeline {
     agent any
-    environment { 
-        CC = 'clang'
-        java = 'test'
+    tools {
+        maven "localmaven"
     }
+   
+
     stages {
-        stage('Example') {
-            environment { 
-                DEBUG_FLAGS = '-g'
-            }
+        stage("Maven Build") {
+            
             steps {
-                echo env.cc
-                echo env.java
-                echo env.debug_flags
+                script {
+                    bat "mvn package -DskipTests=true"
+                }
             }
         }
-    }
-}
+        }
+        

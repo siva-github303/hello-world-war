@@ -10,16 +10,8 @@ pipeline {
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
-			
-	stage("Maven Build") {
-            steps {
-                script {
-                    bat "mvn package -DskipTests=true"
-                }
-            }
-        }
-			
-			stage("Publish to Nexus Repository Manager") {
+					
+	stage("Publish to Nexus Repository Manager") {
             steps {
                 script {
                     pom = readMavenPom file: "pom.xml";

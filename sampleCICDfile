@@ -3,8 +3,6 @@ pipeline {
     tools {
         maven "localmaven"
     }
-   
-
     stages {
         stage("Maven Build") {
             

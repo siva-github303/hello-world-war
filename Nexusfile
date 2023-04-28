@@ -12,15 +12,13 @@ pipeline {
     }
     
      stages {
-        stage('Example') {
-            environment { 
-                DEBUG_FLAGS = '-g'
-            }
+            stage("Maven Build") {
             steps {
-                echo env.NEXUS_VERSION
-               
+                script {
+                    bat "mvn package -DskipTests=true"
+                }
             }
-        }
+        }                
     }
   }
 	

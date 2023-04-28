@@ -10,7 +10,7 @@ pipeline {
         NEXUS_REPOSITORY = "maven-nexus-repo"
         NEXUS_CREDENTIAL_ID = "nexus-credentials"
     }
-					
+	stages {				
 	stage ("Publish to Nexus Repository Manager") {
             steps {
                 script {
@@ -49,5 +49,6 @@ pipeline {
 		}
 		
 	}
+}
 	
 

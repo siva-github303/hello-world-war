@@ -13,7 +13,7 @@ pipeline {
     
      stages {
            stage("Publish to Nexus Repository Manager") {
-            stage("Publish to Nexus Repository Manager") {
+           
              when { expression { params.skip_stage != true } }
             steps {
                 script {
@@ -49,4 +49,5 @@ pipeline {
                     }
                 }
             }
+}
 }

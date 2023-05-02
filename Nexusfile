@@ -82,7 +82,7 @@ pipeline {
                echo %WORKSPACE%
                cd "%WORKSPACE%
                xcopy hello-world-war-1.0.0.war "C:/Program Files/Apache Software Foundation/Tomcat 10.1/webapps"
-               cd "C:/Program Files/Apache Software Foundation/Tomcat 9.0/bin"
+               cd "C:/Program Files/Apache Software Foundation/Tomcat 10.1/bin"
                Tomcat10.exe start
                '''
         }
